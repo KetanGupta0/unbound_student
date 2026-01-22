@@ -1,5 +1,5 @@
-import { COURSES, ATTENDANCE_HISTORY, CERTIFICATES, TRANSACTIONS, NOTICES } from "@/lib/mockData";
-import { BookOpen, CheckCircle, Clock, TrendingUp, AlertCircle, FileText } from "lucide-react";
+import { COURSES, ATTENDANCE_HISTORY, CERTIFICATES, TRANSACTIONS, NOTICES, REVIEWS, CURRENT_STUDENT } from "@/lib/mockData";
+import { BookOpen, CheckCircle, Clock, TrendingUp, AlertCircle, FileText, Star } from "lucide-react";
 import Link from "next/link";
 
 export default function Home() {
@@ -137,7 +137,12 @@ export default function Home() {
                   <div className="flex-1 min-w-0">
                     <h4 className="font-bold text-gray-900 truncate group-hover:text-indigo-600 transition-colors">{course.title}</h4>
                     <div className="flex items-center justify-between text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">
-                      <span>{course.progress}% Complete</span>
+                      {REVIEWS.find(r => r.courseId === course.id && r.studentId === CURRENT_STUDENT.id) ? (
+                        <div className="flex items-center gap-1.5 bg-amber-50 px-2 py-0.5 rounded-md border border-amber-100">
+                          <Star size={10} className="text-amber-500 fill-amber-500" />
+                          <span className="text-amber-700">{REVIEWS.find(r => r.courseId === course.id && r.studentId === CURRENT_STUDENT.id)?.rating}</span>
+                        </div>
+                      ) : <div className="h-4 w-4"></div>}
                       <span className="text-indigo-600">{course.status}</span>
                     </div>
                     <div className="mt-2 h-1.5 w-full bg-gray-100 rounded-full overflow-hidden">

@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { ArrowRight, User } from "lucide-react";
+import { ArrowRight, User, Star } from "lucide-react";
+import { REVIEWS, CURRENT_STUDENT } from "@/lib/mockData";
 
 interface CourseCardProps {
     id: string;
@@ -14,6 +15,8 @@ interface CourseCardProps {
 }
 
 export default function CourseCard({ course }: { course: CourseCardProps }) {
+    const personalReview = REVIEWS.find(r => r.courseId === course.id && r.studentId === CURRENT_STUDENT.id);
+
     return (
         <div className={`bg-white rounded-xl border shadow-sm transition-all duration-200 overflow-hidden flex flex-col h-full group ${course.isBanned ? 'border-amber-200 grayscale-[0.5]' : 'border-gray-100 hover:shadow-md'}`}>
             <div className="relative h-48 overflow-hidden">
@@ -40,9 +43,17 @@ export default function CourseCard({ course }: { course: CourseCardProps }) {
             <div className="p-6 flex-1 flex flex-col">
                 <h3 className="text-lg font-bold text-gray-900 line-clamp-1 mb-2">{course.title}</h3>
 
-                <div className="flex items-center text-sm text-gray-500 mb-6">
-                    <User size={16} className="mr-2" />
-                    {course.instructor}
+                <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center text-sm text-gray-500">
+                        <User size={16} className="mr-2" />
+                        {course.instructor}
+                    </div>
+                    {personalReview && (
+                        <div className="flex items-center gap-1.5 bg-amber-50 px-2.5 py-1 rounded-lg border border-amber-100 shadow-sm">
+                            <Star size={12} className="text-amber-500 fill-amber-500" />
+                            <span className="text-xs font-black text-amber-700">{personalReview.rating}</span>
+                        </div>
+                    )}
                 </div>
 
                 <div className="mt-auto">

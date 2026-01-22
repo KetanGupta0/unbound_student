@@ -7,6 +7,7 @@ import { COURSES, CURRENT_STUDENT } from "@/lib/mockData";
 export default function ChatPage() {
     const enrolledCourses = COURSES.filter(c => c.isEnrolled);
     const [selectedCourseId, setSelectedCourseId] = useState(enrolledCourses[0]?.id);
+    const [showMobileChat, setShowMobileChat] = useState(false);
     const selectedCourse = enrolledCourses.find((c: any) => c.id === selectedCourseId) || enrolledCourses[0];
     const [message, setMessage] = useState("");
     const [chatHistory, setChatHistory] = useState([
@@ -31,6 +32,11 @@ export default function ChatPage() {
         setMessage("");
     };
 
+    const handleSelectCourse = (id: string) => {
+        setSelectedCourseId(id);
+        setShowMobileChat(true);
+    };
+
     if (!selectedCourseId) {
         return (
             <div className="h-[calc(100vh-8rem)] bg-white rounded-xl border border-gray-100 shadow-sm flex items-center justify-center p-8 text-center">
@@ -43,27 +49,27 @@ export default function ChatPage() {
     }
 
     return (
-        <div className="h-[calc(100vh-8rem)] bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden flex">
+        <div className="h-[calc(100vh-8rem)] bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden flex relative">
             {/* Sidebar List */}
-            <div className="w-80 border-r border-gray-100 flex flex-col">
+            <div className={`w-full lg:w-80 border-r border-gray-100 flex flex-col transition-all duration-300 ${showMobileChat ? "hidden lg:flex" : "flex"}`}>
                 <div className="p-4 border-b border-gray-100">
                     <div className="relative">
                         <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={16} />
-                        <input type="text" placeholder="Search chats..." className="w-full pl-9 pr-4 py-2 bg-gray-50 border-none rounded-lg text-sm focus:ring-1 focus:ring-indigo-500" />
+                        <input type="text" placeholder="Search chats..." className="w-full pl-9 pr-4 py-2 bg-gray-50 border-none rounded-lg text-sm focus:ring-1 focus:ring-indigo-500 outline-none" />
                     </div>
                 </div>
                 <div className="flex-1 overflow-y-auto">
                     {enrolledCourses.map(course => (
                         <button
                             key={course.id}
-                            onClick={() => setSelectedCourseId(course.id)}
-                            className={`w-full p-4 flex items-start gap-3 hover:bg-gray-50 transition-colors text-left ${selectedCourseId === course.id ? "bg-indigo-50 hover:bg-indigo-50" : ""}`}
+                            onClick={() => handleSelectCourse(course.id)}
+                            className={`w-full p-4 flex items-start gap-3 hover:bg-gray-50 transition-colors text-left ${selectedCourseId === course.id ? "bg-indigo-50" : ""}`}
                         >
-                            <img src={course.thumbnail} alt={course.title} className="w-10 h-10 rounded-full object-cover" />
+                            <img src={course.thumbnail} alt={course.title} className="w-10 h-10 rounded-full object-cover shadow-sm border border-white" />
                             <div className="flex-1 min-w-0">
-                                <div className="flex justify-between items-baseline mb-1">
+                                <div className="flex justify-between items-baseline mb-0.5">
                                     <h4 className={`text-sm font-semibold truncate ${selectedCourseId === course.id ? "text-indigo-900" : "text-gray-900"}`}>{course.title}</h4>
-                                    <span className="text-xs text-gray-400">12:30 PM</span>
+                                    <span className="text-[10px] text-gray-400">12:30 PM</span>
                                 </div>
                                 <p className={`text-xs truncate ${selectedCourseId === course.id ? "text-indigo-600" : "text-gray-500"}`}>
                                     {course.id === 'c1' ? 'Jane: Is there a prerequisite...' : 'Instructor: New materials uploaded...'}
@@ -75,13 +81,19 @@ export default function ChatPage() {
             </div>
 
             {/* Chat Area */}
-            <div className="flex-1 flex flex-col">
-                <div className="p-4 border-b border-gray-100 flex justify-between items-center bg-white z-10">
+            <div className={`flex-1 flex flex-col transition-all duration-300 ${!showMobileChat ? "hidden lg:flex" : "flex"}`}>
+                <div className="p-3 md:p-4 border-b border-gray-100 flex justify-between items-center bg-white z-10">
                     <div className="flex items-center gap-3">
-                        <img src={selectedCourse.thumbnail} alt={selectedCourse.title} className="w-10 h-10 rounded-full object-cover" />
-                        <div>
-                            <h3 className="font-bold text-gray-900">{selectedCourse.title}</h3>
-                            <p className="text-xs text-green-600 flex items-center gap-1">
+                        <button
+                            onClick={() => setShowMobileChat(false)}
+                            className="lg:hidden p-2 -ml-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-lg"
+                        >
+                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" /></svg>
+                        </button>
+                        <img src={selectedCourse.thumbnail} alt={selectedCourse.title} className="w-8 h-8 md:w-10 md:h-10 rounded-full object-cover shadow-sm" />
+                        <div className="min-w-0">
+                            <h3 className="font-bold text-gray-900 text-sm md:text-base truncate">{selectedCourse.title}</h3>
+                            <p className="text-[10px] md:text-xs text-green-600 flex items-center gap-1">
                                 <span className="w-1.5 h-1.5 bg-green-500 rounded-full"></span>
                                 {selectedCourse.batch}
                             </p>
@@ -92,16 +104,16 @@ export default function ChatPage() {
                     </button>
                 </div>
 
-                <div className="flex-1 overflow-y-auto p-6 space-y-6 bg-slate-50">
+                <div className="flex-1 overflow-y-auto p-4 md:p-6 space-y-6 bg-slate-50">
                     {chatHistory.map(msg => (
                         <div key={msg.id} className={`flex ${msg.isMe ? "justify-end" : "justify-start"}`}>
-                            <div className={`flex max-w-[70%] ${msg.isMe ? "flex-row-reverse" : "flex-row"} gap-3`}>
-                                <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${msg.isMe ? "bg-indigo-100 text-indigo-600" : "bg-gray-200 text-gray-600"}`}>
+                            <div className={`flex max-w-[85%] md:max-w-[70%] ${msg.isMe ? "flex-row-reverse" : "flex-row"} gap-2 md:gap-3`}>
+                                <div className={`w-7 h-7 md:w-8 md:h-8 rounded-full flex items-center justify-center flex-shrink-0 ${msg.isMe ? "bg-indigo-100 text-indigo-600" : "bg-gray-200 text-gray-600"}`}>
                                     <User size={14} />
                                 </div>
-                                <div>
+                                <div className={msg.isMe ? "text-right" : "text-left"}>
                                     <div className={`flex items-baseline gap-2 mb-1 ${msg.isMe ? "flex-row-reverse" : "flex-row"}`}>
-                                        <span className="text-xs font-semibold text-gray-700">{msg.sender}</span>
+                                        <span className="text-[11px] font-semibold text-gray-700">{msg.sender}</span>
                                         <span className="text-[10px] text-gray-400">{msg.time}</span>
                                     </div>
                                     <div className={`p-3 rounded-2xl text-sm ${msg.isMe
@@ -116,9 +128,9 @@ export default function ChatPage() {
                     ))}
                 </div>
 
-                <div className="p-4 bg-white border-t border-gray-100">
+                <div className="p-3 md:p-4 bg-white border-t border-gray-100">
                     <form onSubmit={handleSend} className="flex gap-2">
-                        <button type="button" className="p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-full transition-colors">
+                        <button type="button" className="p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-full transition-colors hidden md:block">
                             <ImageIcon size={20} />
                         </button>
                         <input

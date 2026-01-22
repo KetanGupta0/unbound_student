@@ -41,10 +41,10 @@ export default function AttendancePage() {
                 </div>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <div className="bg-white p-8 rounded-3xl border border-gray-100 shadow-sm flex flex-col items-center justify-center relative overflow-hidden group">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
+                <div className="bg-white p-6 md:p-8 rounded-3xl border border-gray-100 shadow-sm flex flex-col items-center justify-center relative overflow-hidden group">
                     <div className="absolute top-0 left-0 w-2 h-full bg-indigo-600"></div>
-                    <div className="relative w-40 h-40 flex items-center justify-center">
+                    <div className="relative w-32 h-32 md:w-40 md:h-40 flex items-center justify-center">
                         <svg className="w-full h-full transform -rotate-90">
                             <circle cx="80" cy="80" r="70" stroke="currentColor" strokeWidth="12" fill="transparent" className="text-gray-50" />
                             <circle
@@ -60,8 +60,8 @@ export default function AttendancePage() {
                             />
                         </svg>
                         <div className="absolute inset-0 flex flex-col items-center justify-center">
-                            <span className="text-4xl font-black text-gray-900">{attendancePercentage}%</span>
-                            <span className="text-[10px] text-gray-400 uppercase font-black tracking-widest mt-1">Overall</span>
+                            <span className="text-3xl md:text-4xl font-black text-gray-900">{attendancePercentage}%</span>
+                            <span className="text-[9px] md:text-[10px] text-gray-400 uppercase font-black tracking-widest mt-1">Overall</span>
                         </div>
                     </div>
                     <p className="mt-6 text-sm font-bold text-gray-500 text-center">
@@ -69,25 +69,27 @@ export default function AttendancePage() {
                     </p>
                 </div>
 
-                <div className="lg:col-span-2 bg-white p-8 rounded-3xl border border-gray-100 shadow-sm">
+                <div className="lg:col-span-2 bg-white p-6 md:p-8 rounded-3xl border border-gray-100 shadow-sm overflow-hidden">
                     <h3 className="text-lg font-bold text-gray-900 mb-6 flex items-center gap-2">
                         <TrendingUp size={20} className="text-indigo-600" />
                         Attendance Trend
                     </h3>
-                    <div className="flex items-end justify-between h-40 gap-3">
-                        {[80, 100, 90, 70, 100, 85, 95].map((val, i) => (
-                            <div key={i} className="flex-1 flex flex-col items-center gap-3 group">
-                                <div
-                                    className="w-full bg-indigo-50 rounded-xl group-hover:bg-indigo-600 transition-all duration-300 relative"
-                                    style={{ height: `${val}%` }}
-                                >
-                                    <span className="absolute -top-7 left-1/2 -translate-x-1/2 text-[10px] font-black text-indigo-600 opacity-0 group-hover:opacity-100 transition-opacity bg-white px-1.5 py-0.5 rounded shadow-sm border border-indigo-100">
-                                        {val}%
-                                    </span>
+                    <div className="overflow-x-auto pb-4 scrollbar-hide">
+                        <div className="flex items-end justify-between h-40 gap-3 min-w-[500px] lg:min-w-0">
+                            {[80, 100, 90, 70, 100, 85, 95].map((val, i) => (
+                                <div key={i} className="flex-1 flex flex-col items-center gap-3 group">
+                                    <div
+                                        className="w-full bg-indigo-50 rounded-xl group-hover:bg-indigo-600 transition-all duration-300 relative"
+                                        style={{ height: `${val}%` }}
+                                    >
+                                        <span className="absolute -top-7 left-1/2 -translate-x-1/2 text-[10px] font-black text-indigo-600 opacity-0 group-hover:opacity-100 transition-opacity bg-white px-1.5 py-0.5 rounded shadow-sm border border-indigo-100">
+                                            {val}%
+                                        </span>
+                                    </div>
+                                    <span className="text-[10px] font-bold text-gray-400 uppercase tracking-tighter">Day {i + 1}</span>
                                 </div>
-                                <span className="text-[10px] font-bold text-gray-400 uppercase tracking-tighter">Day {i + 1}</span>
-                            </div>
-                        ))}
+                            ))}
+                        </div>
                     </div>
                 </div>
             </div>

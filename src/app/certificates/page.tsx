@@ -107,28 +107,28 @@ export default function CertificatesPage() {
                             <X size={24} />
                         </button>
 
-                        <div className="p-12 md:p-20 bg-[#fafafa] flex flex-col items-center text-center border-8 border-white m-4 rounded-2xl outline outline-1 outline-gray-200">
-                            <div className="mb-8">
-                                <Award size={80} className="text-amber-500" />
+                        <div className="p-6 md:p-12 lg:p-20 bg-[#fafafa] flex flex-col items-center text-center border-[6px] md:border-8 border-white m-3 md:m-4 rounded-2xl outline outline-1 outline-gray-200 overflow-y-auto max-h-[70vh] md:max-h-none">
+                            <div className="mb-4 md:mb-8">
+                                <Award size={64} className="text-amber-500 md:w-20 md:h-20" />
                             </div>
-                            <h2 className="text-sm uppercase tracking-[0.2em] text-gray-400 font-bold mb-8">Certificate of Completion</h2>
-                            <p className="text-gray-500 mb-2">This is to certify that</p>
-                            <p className="text-4xl font-serif font-bold text-gray-900 mb-8 underline decoration-amber-200 decoration-4 underline-offset-8">Alex Johnson</p>
-                            <p className="text-gray-500 mb-2">has successfully completed the course</p>
-                            <p className="text-2xl font-bold text-indigo-600 mb-12">{viewingCert.courseName}</p>
+                            <h2 className="text-[10px] md:text-sm uppercase tracking-[0.2em] text-gray-400 font-bold mb-4 md:mb-8">Certificate of Completion</h2>
+                            <p className="text-xs md:text-gray-500 mb-2">This is to certify that</p>
+                            <p className="text-2xl md:text-4xl font-serif font-bold text-gray-900 mb-4 md:mb-8 underline decoration-amber-200 decoration-4 underline-offset-8">Alex Johnson</p>
+                            <p className="text-xs md:text-gray-500 mb-2">has successfully completed the course</p>
+                            <p className="text-lg md:text-2xl font-bold text-indigo-600 mb-8 md:mb-12">{viewingCert.courseName}</p>
 
-                            <div className="flex justify-between w-full max-w-md border-t border-gray-200 pt-8 mt-4">
-                                <div className="text-left">
-                                    <p className="text-xs text-gray-400 uppercase font-black">Date</p>
-                                    <p className="font-bold text-gray-900">{viewingCert.issuedDate}</p>
+                            <div className="flex flex-col md:flex-row justify-between w-full max-w-md border-t border-gray-200 pt-6 md:pt-8 mt-4 gap-4 md:gap-0">
+                                <div className="text-center md:text-left">
+                                    <p className="text-[9px] md:text-xs text-gray-400 uppercase font-black">Date</p>
+                                    <p className="text-sm md:text-base font-bold text-gray-900">{viewingCert.issuedDate}</p>
                                 </div>
-                                <div className="text-right">
-                                    <p className="text-xs text-gray-400 uppercase font-black">Verify ID</p>
-                                    <p className="font-mono text-gray-900">{viewingCert.id}</p>
+                                <div className="text-center md:text-right">
+                                    <p className="text-[9px] md:text-xs text-gray-400 uppercase font-black">Verify ID</p>
+                                    <p className="text-xs md:text-sm font-mono text-gray-900">{viewingCert.id}</p>
                                 </div>
                             </div>
 
-                            <div className="mt-16 grayscale opacity-30 select-none pointer-events-none">
+                            <div className="mt-8 md:mt-16 grayscale opacity-30 select-none pointer-events-none hidden md:block">
                                 <div className="h-12 w-48 bg-gray-200 rounded animate-pulse"></div>
                                 <p className="text-[10px] mt-2 font-black uppercase text-gray-400">Official Signature</p>
                             </div>

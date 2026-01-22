@@ -15,31 +15,31 @@ export default function ProfilePage() {
                 <div className="h-40 bg-gradient-to-br from-indigo-600 via-indigo-500 to-purple-600 relative">
                     <div className="absolute inset-0 bg-white/10 backdrop-blur-[2px]"></div>
                 </div>
-                <div className="px-8 pb-8">
-                    <div className="relative flex flex-col md:flex-row md:items-end gap-6 -mt-12">
-                        <div className="relative group">
-                            <div className="w-32 h-32 rounded-3xl border-4 border-white shadow-xl overflow-hidden bg-white">
+                <div className="px-6 md:px-8 pb-8">
+                    <div className="relative flex flex-col md:flex-row md:items-end gap-4 md:gap-6 -mt-12 md:-mt-16">
+                        <div className="relative group self-center md:self-auto">
+                            <div className="w-28 h-28 md:w-32 md:h-32 rounded-3xl border-4 border-white shadow-xl overflow-hidden bg-white">
                                 <img
                                     src={CURRENT_STUDENT.avatar}
                                     alt={CURRENT_STUDENT.name}
                                     className="w-full h-full object-cover"
                                 />
                             </div>
-                            <button className="absolute bottom-2 right-2 p-2 bg-indigo-600 text-white rounded-xl border-2 border-white hover:bg-indigo-700 transition-all shadow-lg active:scale-90">
-                                <Camera size={16} />
+                            <button className="absolute bottom-1 right-1 md:bottom-2 md:right-2 p-1.5 md:p-2 bg-indigo-600 text-white rounded-xl border-2 border-white hover:bg-indigo-700 transition-all shadow-lg active:scale-90">
+                                <Camera size={14} className="md:w-4 md:h-4" />
                             </button>
                         </div>
 
-                        <div className="flex-1 mb-2">
+                        <div className="flex-1 mb-2 text-center md:text-left">
                             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                                <div>
-                                    <h2 className="text-3xl font-black text-gray-900 tracking-tight">{CURRENT_STUDENT.name}</h2>
-                                    <p className="text-gray-500 font-medium flex items-center gap-2 mt-1">
+                                <div className="space-y-1">
+                                    <h2 className="text-2xl md:text-3xl font-black text-gray-900 tracking-tight">{CURRENT_STUDENT.name}</h2>
+                                    <p className="text-gray-500 font-medium flex items-center justify-center md:justify-start gap-2">
                                         <Mail size={16} className="text-gray-400" />
                                         {CURRENT_STUDENT.email}
                                     </p>
                                 </div>
-                                <button className="flex items-center justify-center gap-2 px-6 py-2.5 bg-gray-900 text-white text-sm font-bold rounded-xl hover:bg-indigo-600 transition-all shadow-lg active:scale-95">
+                                <button className="flex items-center justify-center gap-2 px-6 py-2.5 bg-gray-900 text-white text-sm font-bold rounded-xl hover:bg-indigo-600 transition-all shadow-lg active:scale-95 w-full md:w-auto">
                                     Edit Profile
                                 </button>
                             </div>
@@ -140,21 +140,21 @@ export default function ProfilePage() {
                             { device: "Safari / iPhone 15", location: "New York, USA", time: "Yesterday", status: "Success" },
                             { device: "Chrome / Windows 11", location: "Brooklyn, USA", time: "3 days ago", status: "Success" },
                         ].map((log, i) => (
-                            <div key={i} className="flex justify-between items-center px-8 py-4 border-b border-gray-50 last:border-0 hover:bg-gray-50/50 transition-colors">
-                                <div className="flex items-center gap-4">
-                                    <div className="w-10 h-10 rounded-full bg-indigo-50 flex items-center justify-center text-indigo-600">
-                                        <ShieldCheck size={20} />
+                            <div key={i} className="flex flex-col sm:flex-row sm:justify-between sm:items-center px-6 md:px-8 py-4 border-b border-gray-50 last:border-0 hover:bg-gray-50/50 transition-colors gap-3 sm:gap-0">
+                                <div className="flex items-center gap-3 md:gap-4">
+                                    <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-indigo-50 flex items-center justify-center text-indigo-600 flex-shrink-0">
+                                        <ShieldCheck size={18} className="md:w-5 md:h-5" />
                                     </div>
-                                    <div>
-                                        <p className="text-sm font-bold text-gray-900">{log.device}</p>
-                                        <p className="text-xs text-gray-500">{log.location}</p>
+                                    <div className="min-w-0">
+                                        <p className="text-sm font-bold text-gray-900 truncate">{log.device}</p>
+                                        <p className="text-xs text-gray-500 truncate">{log.location}</p>
                                     </div>
                                 </div>
-                                <div className="text-right">
-                                    <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full ${log.status === 'Current Session' ? 'text-indigo-600 bg-indigo-50' : 'text-gray-400 bg-gray-100'}`}>
-                                        {log.status}
+                                <div className="flex items-center justify-between sm:flex-col sm:items-end">
+                                    <span className={`text-[9px] md:text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full ${log.status === 'Current Session' ? 'text-indigo-600 bg-indigo-50' : 'text-gray-400 bg-gray-100'}`}>
+                                        {log.status === 'Current Session' ? 'Active' : log.status}
                                     </span>
-                                    <p className="text-xs text-gray-400 mt-1">{log.time}</p>
+                                    <p className="text-[10px] md:text-xs text-gray-400 sm:mt-1">{log.time}</p>
                                 </div>
                             </div>
                         ))}

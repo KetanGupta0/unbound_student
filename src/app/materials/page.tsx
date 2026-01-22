@@ -19,21 +19,21 @@ export default function MaterialsPage() {
 
     return (
         <div className="space-y-8">
-            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
-                <div>
+            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 lg:gap-6">
+                <div className="mb-2 lg:mb-0">
                     <h1 className="text-2xl font-bold text-gray-900">Study Materials</h1>
                     <p className="text-gray-500 mt-1">Access resources shared by your instructors</p>
                 </div>
 
-                <div className="flex flex-col sm:flex-row gap-4">
-                    <div className="relative flex-1 sm:w-64">
+                <div className="flex flex-col md:flex-row gap-3 md:gap-4">
+                    <div className="relative flex-1 md:w-64">
                         <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
                         <input
                             type="text"
                             placeholder="Search materials..."
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
-                            className="pl-10 pr-4 py-2 w-full border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-4 focus:ring-indigo-500/5 focus:border-indigo-500 transition-all"
+                            className="pl-10 pr-4 py-2 w-full border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-4 focus:ring-indigo-500/5 focus:border-indigo-500 transition-all shadow-sm"
                         />
                     </div>
 
@@ -41,7 +41,7 @@ export default function MaterialsPage() {
                         <select
                             value={selectedCourseId}
                             onChange={(e) => setSelectedCourseId(e.target.value)}
-                            className="appearance-none pl-4 pr-10 py-2 border border-gray-200 rounded-xl text-sm font-medium text-gray-600 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 outline-none transition-all"
+                            className="appearance-none pl-4 pr-10 py-2 w-full md:w-auto border border-gray-200 rounded-xl text-sm font-medium text-gray-600 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 outline-none transition-all shadow-sm"
                         >
                             <option value="All">All Courses</option>
                             {enrolledCourses.map(c => (

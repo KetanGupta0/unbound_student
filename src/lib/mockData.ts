@@ -97,7 +97,19 @@ export const COURSES = [
     meetingLink: "https://meet.google.com/bnd-arch-tst",
     isEnrolled: true,
     isBanned: true,
+    rating: 4.5,
+    reviewCount: 12,
   },
+].map(course => ({
+  ...course,
+  rating: (course as any).rating || (Math.random() * (5 - 3.5) + 3.5).toFixed(1),
+  reviewCount: (course as any).reviewCount || Math.floor(Math.random() * 50) + 5
+}));
+
+export const REVIEWS = [
+  { id: "r1", courseId: "c1", studentId: "STD001", studentName: "Alex Johnson", rating: 5, comment: "Amazing course! Really helped me understand advanced patterns.", date: "2024-11-25", status: "Live" },
+  { id: "r2", courseId: "c2", studentId: "STD002", studentName: "Sarah Doe", rating: 4, comment: "Great content, but some parts were a bit too fast.", date: "2024-10-15", status: "Live" },
+  { id: "r3", courseId: "c3", studentId: "STD001", studentName: "Alex Johnson", rating: 4, comment: "Good introduction to UI principles.", date: "2024-10-20", status: "Under Review" },
 ];
 
 export const ATTENDANCE_HISTORY = [
