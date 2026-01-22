@@ -90,7 +90,7 @@ src/
 ### 2. Installation
 ```bash
 # Clone the repository
-git clone [<repository-url>](https://github.com/KetanGupta0/unbound_student.git)
+git clone https://github.com/KetanGupta0/unbound_student.git
 
 # Navigate to project directory
 cd unbound_student
