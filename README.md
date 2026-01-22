@@ -90,7 +90,10 @@ src/
 ### 2. Installation
 ```bash
 # Clone the repository
-git clone <repository-url>
+git clone [<repository-url>](https://github.com/KetanGupta0/unbound_student.git)
+
+# Navigate to project directory
+cd unbound_student
 
 # Install dependencies
 npm install
