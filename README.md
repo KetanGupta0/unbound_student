@@ -1,115 +1,114 @@
-STUDENT PANEL DASHBOARD
+# 🎓 Student Panel Dashboard
 
-A modern, high-performance Student Management Dashboard built with Next.js 15,
-TypeScript, and Tailwind CSS. This panel provides students with a clean and intuitive
-interface to manage courses, attendance, learning resources, and certifications.
+A **modern, high-performance Student Management Dashboard** built with **Next.js 15**, **TypeScript**, and **Tailwind CSS**.  
+This panel provides students with a clean, intuitive interface to manage courses, attendance, learning resources, and certifications efficiently.
 
---------------------------------------------------
-HIGHLIGHTS
---------------------------------------------------
-- Built using Next.js App Router
-- Clean and modern UI with Tailwind CSS
-- Fully responsive (Desktop, Tablet, Mobile)
-- Component-driven architecture
-- Optimized for performance and scalability
+> Designed with scalability, performance, and user experience in mind.
 
---------------------------------------------------
-KEY FEATURES
---------------------------------------------------
+---
 
-DASHBOARD OVERVIEW
-- Overview of active courses
-- Attendance trends and progress indicators
-- Recent activities and transactions
+## 🌟 Highlights
 
-COURSE MANAGEMENT
+- ⚡ Built using **Next.js App Router**
+- 🎨 Clean & modern UI powered by **Tailwind CSS**
+- 📱 Fully responsive (Desktop, Tablet & Mobile)
+- 🧠 Component-driven architecture
+- 🚀 Optimized for performance and maintainability
+
+---
+
+## ✨ Key Features
+
+### 📊 Dashboard Overview
+- Snapshot of active courses
+- Attendance trends & progress indicators
+- Recent activity & transactions
+
+### 📚 Course Management
 - Enrolled course details
 - Class schedules
-- Live class links
+- Live class links (if applicable)
 
-ATTENDANCE TRACKING
+### 📅 Attendance Tracking
 - Visual attendance progress bars
 - Daily attendance trends using bar graphs
-- Course-wise attendance monitoring
+- Course-wise attendance segregation
 
-STUDY MATERIALS
+### 📁 Study Materials
 - Centralized resource library
 - Course-specific materials
-- Search and filtering support
+- Search and filter functionality
 
-CERTIFICATE MODULE
+### 📜 Certificate Module
 - View earned certificates
 - Certificate preview
-- PDF download functionality
+- PDF download support
 
-REAL-TIME CHAT
+### 💬 Real-time Chat
 - Course-specific discussion channels
 - Enables collaborative learning
 
-COMPLAINT / TICKET SYSTEM
+### 🛠️ Complaint / Ticket System
 - Raise complaints or support tickets
 - Track issue status (Open / In Progress / Resolved)
 
-COURSE-LEVEL ACCESS CONTROL
-- Restricted courses are hidden from dashboard
-- Attendance, materials, and certificates are locked
-- Ensures data security and compliance
+### 🔐 Course-Level Access Control
+- Restricted courses are automatically hidden
+- Attendance, materials, and certificates are locked for banned courses
 
---------------------------------------------------
-TECHNOLOGY STACK
---------------------------------------------------
-Framework        : Next.js 15 (App Router)
-Language         : TypeScript
-Styling          : Tailwind CSS
-Icons            : Lucide React
-State Management : React Hooks (useState, useMemo)
-Data Layer       : Mock Data (src/lib/mockData.ts)
+---
 
---------------------------------------------------
-PROJECT STRUCTURE
---------------------------------------------------
+## 🛠️ Technology Stack
+
+| Category | Technology |
+|--------|------------|
+| **Framework** | Next.js 15 (App Router) |
+| **Language** | TypeScript |
+| **Styling** | Tailwind CSS |
+| **Icons** | Lucide React |
+| **State Management** | React Hooks (`useState`, `useMemo`) |
+| **Data Layer** | Mocked Data (`src/lib/mockData.ts`) |
+
+---
+
+## 📂 Project Structure
+```text
 src/
-  app/            App Router pages
-  components/     Reusable UI components
-  lib/            Utilities and mock data
-  styles/         Global styles
-  types/          TypeScript types
+├── app/                # App Router pages
+├── components/         # Reusable UI components
+├── lib/                # Utilities & mock data
+├── styles/             # Global styles
+└── types/              # TypeScript types & interfaces
+```
 
---------------------------------------------------
-GETTING STARTED
---------------------------------------------------
+## 🚀 Getting Started
 
-PREREQUISITES
-- Node.js (Latest LTS recommended)
+### 1. Prerequisites
+- Node.js (Latest LTS version recommended)
 - npm or pnpm
 
-INSTALLATION
-1. Clone the repository
-   git clone https://github.com/KetanGupta0/unbound_student.git
+### 2. Installation
+```bash
+# Clone the repository
+git clone <repository-url>
 
-2. Navigate to project directory
-   cd unbound_student
+# Install dependencies
+npm install
+```
 
-3. Install dependencies
-   npm install
-
-RUN LOCALLY
+### 3. Running Locally
+```bash
+# Start the development server
 npm run dev
+```
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the results.
 
-Open browser at:
-http://localhost:3000
+---
 
---------------------------------------------------
-FUTURE ENHANCEMENTS
---------------------------------------------------
-- Backend API integration
-- Authentication and role-based access
-- Real-time notifications
-- Analytics dashboard
-- Exportable reports
+## 🔒 Course-Level Ban Behavior
+The panel includes built-in security logic where admins can restrict specific courses. Banned courses are hidden from the dashboard, and all related attendance, materials, and certificates are automatically locked to ensure compliance.
 
---------------------------------------------------
-LICENSE
---------------------------------------------------
-This project is created for demonstration and portfolio purposes.
-All rights reserved.
+---
+
+## 📄 License
+This project is for demonstration purposes. All rights reserved.
